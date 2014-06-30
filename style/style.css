@@ -1,0 +1,52 @@
+/*
+ *  Newborn Feeding Tracker CSS
+ *  version: 0.0.1
+ *  authors: jonuday
+ *
+ *  Description:
+ *  New born baby feeding and "results" tracker for laction plan tracking.
+ *
+ */
+
+body {
+    min-width: 320px;
+    max-width: 600px;
+    width: 50%;
+    margin: 1em auto;
+    padding: 0;
+    background: #EAEAE0;
+}
+
+/* general */
+
+ul {
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+li {
+    display: inline-block;
+    margin-right: 1em;
+}
+
+li:last-child {
+    margin-right: 0;
+}
+
+/* Add new feeding */
+
+.addFeeding {
+    border: 1px solid #9C6721;
+    background-color: #FEFEFE;
+    padding: 4px;
+    margin: 1em 0;
+}
+
+.addFeeding ul {
+    margin: 0 0 1em;
+}
+.addFeeding label {
+    font-size: 0.7em;
+    color: #555;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Newborn Feedings Tracker</title>
+
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+
+</head>
+<body>
+
+	<header>
+		<h1>Newborn Feedings Tracker</h1>
+	</header>
+
+	<div id="content"></div>
+
+	<footer></footer>
+
+	<div class="addFeeding">
+		<form action="#">
+			<ul>
+				<li class="date"><label for="date">Date: </label><input id="date" type="text" placeholder="date" ></li>
+				<li class="time"><label for="time">Time: </label><input type="text" placeholder="time" id="time"></li>
+				<li class="breast"><label for="breast">Breast Fed: </label><input type="checkbox" placeholder="breast" id="breast" ></li>
+				<li class="supplement"><label for="supplement">Used Supplement: </label><input type="checkbox" placeholder="supplement" name="supplement"> <span class="amount"><label for="amount">amount </label><input type="text" placeholder="amount" name="amount"></span></li>
+				<li class="pumping"><label for="pumpling">Pumped: </label><input type="checkbox" placeholder="pumping" name="pumping"></li>
+				<li class="pee"><label for="pee">Peed: </label><input type="checkbox" placeholder="pee" name="pee"></li>
+				<li class="poop"><label for="poop">Pooped</label><input type="checkbox" placeholder="poop" name="poop"></li>
+			</ul>
+			<button id="addFeeding">add</button>
+		</form>
+	</div>
+
+	<script id="feedingTemplate" type="text/template">
+		<ul>
+			<li class="date"><%= date %></li>
+			<li class="time"><%= time %></li>
+			<li class="breast"><%= breast %></li>
+			<li class="supplement"><%= supplement %> <span class="amount"><%= amount %></span></li>
+			<li class="pumping"><%= pumping %></li>
+			<li class="pee"><%= pee %></li>
+			<li class="poop"><%= poop %></li>
+		</ul>
+		<div><a class="edit" href="#">edit</a> | <a class="delete" href="#">delete</a></div>
+	</script>
+
+	<script src="js/lib/jquery-1.9.1.js"></script>
+	<script src="js/lib/underscore.js"></script>
+	<script src="js/lib/backbone.js"></script>
+
+	<script src="js/app.js"></script>
+
+</body>
+</html>

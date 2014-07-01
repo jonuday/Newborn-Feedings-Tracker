@@ -9,38 +9,50 @@
 </head>
 <body>
 
-	<header>
-		<h1>Newborn Feedings Tracker</h1>
-	</header>
-
-	<div id="content"></div>
-
-	<footer></footer>
-
 	<div class="addFeeding">
 		<form action="#">
 			<ul>
-				<li class="date"><label for="date">Date: </label><input id="date" type="text" placeholder="date" ></li>
+				<li class="date"><label for="date">Date: </label><input type="text" placeholder="date" id="date"></li>
 				<li class="time"><label for="time">Time: </label><input type="text" placeholder="time" id="time"></li>
 				<li class="breast"><label for="breast">Breast Fed: </label><input type="checkbox" placeholder="breast" id="breast" ></li>
-				<li class="supplement"><label for="supplement">Used Supplement: </label><input type="checkbox" placeholder="supplement" name="supplement"> <span class="amount"><label for="amount">amount </label><input type="text" placeholder="amount" name="amount"></span></li>
-				<li class="pumping"><label for="pumpling">Pumped: </label><input type="checkbox" placeholder="pumping" name="pumping"></li>
-				<li class="pee"><label for="pee">Peed: </label><input type="checkbox" placeholder="pee" name="pee"></li>
-				<li class="poop"><label for="poop">Pooped</label><input type="checkbox" placeholder="poop" name="poop"></li>
+				<li class="supplement"><label for="supplement">Used Supplement: </label><input type="checkbox" placeholder="supplement" id="supplement"> <span class="amount"><label for="amount">amount </label><input type="text" placeholder="amount" id="amount"></span></li>
+				<li class="pumping"><label for="pumpling">Pumped: </label><input type="checkbox" placeholder="pumping" id="pumping"></li>
+				<li class="pee"><label for="pee">Peed: </label><input type="checkbox" placeholder="pee" id="pee"></li>
+				<li class="poop"><label for="poop">Pooped</label><input type="checkbox" placeholder="poop" id="poop"></li>
 			</ul>
 			<button id="addFeeding">add</button>
 		</form>
 	</div>
 
+	<header>
+		<h1>Newborn Feedings Tracker</h1>
+
+		<ul>
+			<li class="date">date</li>
+			<li class="time">time</li>
+			<li class="breast">breast</li>
+			<li class="supplement">supplement</li>
+			<li class="amount">amount</li>
+			<li class="pumping">pumping</li>
+			<li class="pee">pee</li>
+			<li class="pee">poop</li>
+		</ul>
+	</header>
+	
+	<div id="content"></div>
+
+	<footer></footer>
+
 	<script id="feedingTemplate" type="text/template">
 		<ul>
 			<li class="date"><%= date %></li>
 			<li class="time"><%= time %></li>
-			<li class="breast"><%= breast %></li>
-			<li class="supplement"><%= supplement %> <span class="amount"><%= amount %></span></li>
-			<li class="pumping"><%= pumping %></li>
-			<li class="pee"><%= pee %></li>
-			<li class="poop"><%= poop %></li>
+			<li class="breast"><%= (breast == true) ? 'Yes' : 'No' %></li>
+			<li class="supplement"><%= (supplement == true) ? 'Yes' : 'No' %></li> 
+			<li class="amount"><% (amount != null) ? print('<span class="amount">' + amount + '</span>') : '' %></li>
+			<li class="pumping"><%= (pumping == true) ? 'Yes' : 'No' %></li>
+			<li class="pee"><%= (pee == true) ? 'Yes' : 'No' %></li>
+			<li class="poop"><%= (poop == true) ? 'Yes' : 'No' %></li>
 		</ul>
 		<div><a class="edit" href="#">edit</a> | <a class="delete" href="#">delete</a></div>
 	</script>

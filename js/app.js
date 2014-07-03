@@ -27,7 +27,7 @@ app.Feeding = Backbone.Model.extend({
     },
 
     initialize: function() {
-        console.debug('model initialized');
+        console.log('model initialized');
     }
 });
 
@@ -39,7 +39,7 @@ app.Feedings = Backbone.Collection.extend({
     url: '/feedings',
 
     initialize: function() {
-        console.debug('collection initialized');
+        console.log('collection initialized');
     }
 });
 
@@ -56,7 +56,7 @@ app.FeedingView = Backbone.View.extend({
     },
 
     initialize: function() {
-        console.debug('model view initialized');
+        console.log('model view initialized');
     },
 
     deleteFeeding: function() {
@@ -75,33 +75,42 @@ app.FeedingView = Backbone.View.extend({
 // var app = app || {};
 app.FeedingsView = Backbone.View.extend({
     el: '#content',
-    tagName: 'section',
 
-    initialize: function(f) {
-        this.collection = new app.Feedings(f);
+    initialize: function (initialFeedings) {
+        this.collection = new app.Feedings(initialFeedings);
         this.render();
 
-        console.debug('collection view initialized');
-
         this.listenTo(this.collection, 'add', this.renderOne);
+
+        $('.addFeeding').on('click','a',function(){ 
+        	$(this).toggleClass('open');
+        	$(this).next('div').toggle('slow'); 
+        });
     },
 
     events: {
-        'click #addFeeding': addFeeding
+        'click #add': 'addFeeding'
     },
 
     addFeeding: function(e) {
-        e.preventDefault();
+    	e.preventDefault();
 
-        var formData = {};
-
-        $('.addFeeding').children('input').each(function() {
+      	var formData = {};
+ 
+        $('#addFeeding').find('input').each(function (i,el) {
             if ($(el).val != null) {
                 formData[el.id] = $(el).val();
             }
         });
 
         this.collection.add(new app.Feeding(formData));
+        
+        // close the add form
+        $('.addFeeding a').removeClass('open').next('div').hide('fast');
+        
+        // Reset the form
+        $('#addFeeding')[0].reset();
+
     },
 
     render: function() {
@@ -114,71 +123,55 @@ app.FeedingsView = Backbone.View.extend({
         var feedingView = new app.FeedingView({
             model: item
         });
-        this.$el.append(feedingView.render().el);
+        this.$el.prepend(feedingView.render().el);
     }
 });
 
 
-AppRouter = Backbone.Router.extend({
+app.AppRouter = Backbone.Router.extend({
     routes: {
         '/:id': 'getFeeding',
-        '/': 'getFeedings',
+        '': 'getFeedings',
         '*notfound': 'notFound'
     },
 
     initialize: function() {
-        var tests = [{
-            date: '06/22/2014',
-            time: '2:58 PM',
-            breast: true,
-            supplement: false,
-            amount: 0,
-            pumping: true,
-            pee: false,
-            poop: false
-        }, {
-            date: '06/22/2014',
-            time: '6:00 PM',
-            breast: true,
-            supplement: true,
-            amount: 0.25,
-            pumping: true,
-            pee: true,
-            poop: true
-        }];
+        var tests = [
+        	{ date: '06/22/2014', time: '2:58 PM', breast: true, supplement: false, amount: 0, pumping: true, pee: false, poop: false },
+        	{ date: '06/22/2014', time: '6:00 PM', breast: true, supplement: true, amount: 0.25, pumping: true, pee: true, poop: true}
+        ];
 
-        app.collectionView = new app.FeedingsView(tests);
+        new app.FeedingsView(tests);
 
-        console.debug('router initialized, tests loaded');
     },
 
     start: function() {
         Backbone.history.start({
             pushState: true
         });
-        console.debug('app started');
+        console.log('app started');
     },
 
     getFeeding: function(item) {
-        console.debug('route: get feeding ', item);
+        console.log('route: get feeding ', item);
     },
 
     getFeedings: function() {
         feedings = new app.Feedings;
-        feedingsView = new FeedingsView;
+        feedingsView = new app.FeedingsView;
 
-        console.debug('route: get all feedings');
+        console.log('route: get all feedings');
     },
 
     notFound: function() {
-        console.debug('route: not found');
+        console.log('route: not found');
     }
 
 });
 
 $(function() {
 
-    var app = new AppRouter();
-    app.start();
+    var tracker = new app.AppRouter();
+    tracker.start();
 
 });

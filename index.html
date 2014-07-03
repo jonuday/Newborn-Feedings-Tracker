@@ -9,21 +9,6 @@
 </head>
 <body>
 
-	<div class="addFeeding">
-		<form action="#">
-			<ul>
-				<li class="date"><label for="date">Date: </label><input type="text" placeholder="date" id="date"></li>
-				<li class="time"><label for="time">Time: </label><input type="text" placeholder="time" id="time"></li>
-				<li class="breast"><label for="breast">Breast Fed: </label><input type="checkbox" placeholder="breast" id="breast" ></li>
-				<li class="supplement"><label for="supplement">Used Supplement: </label><input type="checkbox" placeholder="supplement" id="supplement"> <span class="amount"><label for="amount">amount </label><input type="text" placeholder="amount" id="amount"></span></li>
-				<li class="pumping"><label for="pumpling">Pumped: </label><input type="checkbox" placeholder="pumping" id="pumping"></li>
-				<li class="pee"><label for="pee">Peed: </label><input type="checkbox" placeholder="pee" id="pee"></li>
-				<li class="poop"><label for="poop">Pooped</label><input type="checkbox" placeholder="poop" id="poop"></li>
-			</ul>
-			<button id="addFeeding">add</button>
-		</form>
-	</div>
-
 	<header>
 		<h1>Newborn Feedings Tracker</h1>
 
@@ -38,8 +23,28 @@
 			<li class="pee">poop</li>
 		</ul>
 	</header>
-	
-	<div id="content"></div>
+
+	<div id="content">
+		<div class="addFeeding">
+			<a>Add Feeding</a>
+			<div>
+				<form id="addFeeding" action="#">
+					<ul>
+						<li class="date"><label for="date">Date</label><input type="text" placeholder="date" id="date"></li>
+						<li class="time"><label for="time">Time</label><input type="text" placeholder="time" id="time"></li>
+						<li class="breast"><label for="breast">Breast Fed</label><input type="checkbox" placeholder="breast" id="breast" ></li>
+						<li class="supplement"><label for="supplement">Used Supplement</label><input type="checkbox" placeholder="supplement" id="supplement"></li>
+						<li class="amount"><label for="amount">Amount</label><input type="text" placeholder="amount" id="amount"></li>
+						<li class="pumping"><label for="pumping">Pumped</label><input type="checkbox" placeholder="pumping" id="pumping"></li>
+						<li class="pee"><label for="pee">Peed</label><input type="checkbox" placeholder="pee" id="pee"></li>
+						<li class="poop"><label for="poop">Pooped</label><input type="checkbox" placeholder="poop" id="poop"></li>
+					</ul>
+					<button id="add">add</button>
+				</form>
+			</div>
+		</div>
+		
+	</div>
 
 	<footer></footer>
 
@@ -47,17 +52,17 @@
 		<ul>
 			<li class="date"><%= date %></li>
 			<li class="time"><%= time %></li>
-			<li class="breast"><%= (breast == true) ? 'Yes' : 'No' %></li>
-			<li class="supplement"><%= (supplement == true) ? 'Yes' : 'No' %></li> 
+			<li class="breast"><%= (breast == true) ? '<span class="true">Yes</span>' : '<span class="false">No</span>' %></li>
+			<li class="supplement"><%= (supplement == true) ? '<span class="true">Yes</span>' : '<span class="false">No</span>' %></li> 
 			<li class="amount"><% (amount != null) ? print('<span class="amount">' + amount + '</span>') : '' %></li>
-			<li class="pumping"><%= (pumping == true) ? 'Yes' : 'No' %></li>
-			<li class="pee"><%= (pee == true) ? 'Yes' : 'No' %></li>
-			<li class="poop"><%= (poop == true) ? 'Yes' : 'No' %></li>
+			<li class="pumping"><%= (pumping == true) ? '<span class="true">Yes</span>' : '<span class="false">No</span>' %></li>
+			<li class="pee"><%= (pee == true) ? '<span class="true">Yes</span>' : '<span class="false">No</span>' %></li>
+			<li class="poop"><%= (poop == true) ? '<span class="true">Yes</span>' : '<span class="false">No</span>' %></li>
 		</ul>
 		<div><a class="edit" href="#">edit</a> | <a class="delete" href="#">delete</a></div>
 	</script>
 
-	<script src="js/lib/jquery-1.9.1.js"></script>
+	<script src="js/lib/jquery-1.11.1.min.js"></script>
 	<script src="js/lib/underscore.js"></script>
 	<script src="js/lib/backbone.js"></script>
 

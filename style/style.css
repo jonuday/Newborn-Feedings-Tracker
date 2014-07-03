@@ -16,6 +16,9 @@ body {
 }
 
 /* general */
+h1 {
+color: #555;
+}
 article {
   border-bottom: 1px solid #CCC;
   margin-bottom: 5px;
@@ -60,29 +63,74 @@ li:last-child {
 }
 
 /* header */
+header {
+padding-top: 20px;
+}
+
 header ul {
-border-bottom: 1px solid #000;
-  margin-bottom: 5px;
+  border-bottom: 1px solid #AAA;
+  margin-bottom: 8px;
 }
 
 /* Add new feeding */
 
 .addFeeding {
-    border: 1px solid #9C6721;
-    border-top: 0;
-    background-color: #FEFEFE;
-    padding: 2px;
-    margin: 0 0 1em;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  max-width: 750px;
+  min-width: 320px;
+    border: 1px solid #CCC;
+  border-top: 0;
+    background-color: #F8F8F4;
+    padding: 2px 8px 0px;
+    margin: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.addFeeding a {
+  color: #AAA;
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 4px 0 8px;
+  text-align: left;
+}
+.addFeeding a:before {
+  content: "+";
+  color: #AAA;
+  float: left;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  height: 16px;
+  width: 16px;
+  margin-right: 5px;
+  text-align: center;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+}
+
+.addFeeding a.open:before {
+    content: "-";
+}
+
+.addFeeding div {
+display: none;
 }
 
 .addFeeding ul {
-    margin: 0 0 1em;
-  padding: 0;
-}
-.addFeeding li {
-    width: 13.2%;
-  padding: 0 0 0 2px;
   margin: 0;
+  padding: 1em 0;
+}
+
+.addFeeding li {
+    width: 32%;
+  padding: 0;
+  margin: 1em 0;
   vertical-align: top;
   text-align: left;
   
@@ -96,8 +144,14 @@ border-right: none;
     color: #555;
 }
 .addFeeding input[type="text"] {
-    width: 80px;
+    width: 65%;
+    height: 20px;
+    padding: 5px 10px;
 }
-.addFeeding .amount {
-  
+.addFeeding input[type="checkbox"] {
+margin: 1em 0;
+}
+
+.addFeeding button {
+  margin: 0 0 1em; 
 }
